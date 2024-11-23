@@ -2,6 +2,8 @@ package com.sopkaton.web2.controller;
 
 import com.sopkaton.web2.common.api.SuccessCode;
 import com.sopkaton.web2.controller.request.RegisterRequest;
+import com.sopkaton.web2.controller.request.TeamDuplicateRequest;
+import com.sopkaton.web2.service.response.TeamDuplicateResponse;
 import com.sopkaton.web2.service.response.TeamResponse;
 import com.sopkaton.web2.service.response.TeamsResponse;
 import com.sopkaton.web2.service.team.TeamService;
@@ -44,6 +46,12 @@ public class TeamController {
     @GetMapping("/{teamId}/register")
     public ApiResponse<TeamResponse> registerTeam(@RequestParam long teamId, @RequestHeader("User-Id") long userId, @RequestBody RegisterRequest request) {
         return ApiResponse.success(SuccessCode.OK, teamService.registerTeam(teamId, userId, request.code()));
+    }
+
+    @GetMapping("/check")
+    public ApiResponse<TeamDuplicateResponse> checkDuplicateTeam(@RequestBody TeamDuplicateRequest teamDuplicateRequest) {
+        TeamDuplicateResponse teamDuplicateResponse = teamService.checkDuplicate(teamDuplicateRequest.name());
+        return ApiResponse.success(SuccessCode.OK, teamDuplicateResponse);
     }
 
 }
