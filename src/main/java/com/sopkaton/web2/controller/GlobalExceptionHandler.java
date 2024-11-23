@@ -1,7 +1,7 @@
 package com.sopkaton.web2.controller;
 
 
-import com.sopkaton.web2.common.ErrorCode;
+import com.sopkaton.web2.common.api.ErrorCode;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import com.sopkaton.web2.common.api.CustomException;
 import com.sopkaton.web2.common.api.ErrorCode;

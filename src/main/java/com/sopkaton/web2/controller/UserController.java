@@ -1,9 +1,10 @@
 package com.sopkaton.web2.controller;
 
 
-import com.sopkaton.web2.common.SuccessCode;
+import com.sopkaton.web2.common.api.SuccessCode;
 import com.sopkaton.web2.controller.request.UserPostRequest;
-import com.sopkaton.web2.service.command.UserService;
+import com.sopkaton.web2.service.UserService;
+import com.sopkaton.web2.service.response.IdResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -1,8 +1,8 @@
-package com.sopkaton.web2.service.command;
+package com.sopkaton.web2.service;
 
 import com.sopkaton.web2.controller.request.UserPostRequest;
-import com.sopkaton.web2.repository.User;
-import com.sopkaton.web2.repository.UserRepository;
+import com.sopkaton.web2.repository.user.User;
+import com.sopkaton.web2.repository.user.UserRepository;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

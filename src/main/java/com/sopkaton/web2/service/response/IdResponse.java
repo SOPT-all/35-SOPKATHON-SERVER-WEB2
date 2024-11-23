@@ -1,4 +1,4 @@
-package com.sopkaton.web2.controller;
+package com.sopkaton.web2.service.response;
 
 public record IdResponse(
         Long id
