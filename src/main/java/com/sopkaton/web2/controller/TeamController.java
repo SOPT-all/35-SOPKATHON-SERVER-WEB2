@@ -49,10 +49,9 @@ public class TeamController {
         return ApiResponse.success(SuccessCode.OK, teamService.registerTeam(teamId, userId, request.code()));
     }
 
-    @GetMapping("/check")
+    @PostMapping("/check")
     public ApiResponse<TeamDuplicateResponse> checkDuplicateTeam(@RequestBody TeamDuplicateRequest teamDuplicateRequest) {
         TeamDuplicateResponse teamDuplicateResponse = teamService.checkDuplicate(teamDuplicateRequest.name());
         return ApiResponse.success(SuccessCode.OK, teamDuplicateResponse);
     }
-
 }
