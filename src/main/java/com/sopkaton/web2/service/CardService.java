@@ -1,18 +1,18 @@
 package com.sopkaton.web2.service;
 
-import com.sopkaton.web2.common.CoreException;
-import com.sopkaton.web2.common.CustomException;
-import com.sopkaton.web2.common.ErrorCode;
-import com.sopkaton.web2.repository.Card;
-import com.sopkaton.web2.repository.CardRepository;
-import com.sopkaton.web2.repository.Mission;
-import com.sopkaton.web2.repository.MissionRetriever;
-import com.sopkaton.web2.repository.Team;
-import com.sopkaton.web2.repository.TeamRetriever;
-import com.sopkaton.web2.repository.User;
-import com.sopkaton.web2.repository.UserRetriever;
-import com.sopkaton.web2.repository.UserTeam;
-import com.sopkaton.web2.repository.UserTeamRetriever;
+import com.sopkaton.web2.common.core.CoreException;
+import com.sopkaton.web2.common.api.CustomException;
+import com.sopkaton.web2.common.api.ErrorCode;
+import com.sopkaton.web2.repository.card.Card;
+import com.sopkaton.web2.repository.card.CardRepository;
+import com.sopkaton.web2.repository.mission.Mission;
+import com.sopkaton.web2.repository.mission.MissionRetriever;
+import com.sopkaton.web2.repository.team.Team;
+import com.sopkaton.web2.repository.team.TeamRetriever;
+import com.sopkaton.web2.repository.user.User;
+import com.sopkaton.web2.repository.user.UserRetriever;
+import com.sopkaton.web2.repository.userteam.UserTeam;
+import com.sopkaton.web2.repository.userteam.UserTeamRetriever;
 import com.sopkaton.web2.service.command.CardCreateCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,12 +27,6 @@ public class CardService {
     private final UserTeamRetriever userTeamRetriever;
 
     public void createCard(CardCreateCommand from) {
-        //1. 카드를 만든다.
-        //1. userretrieve에서 유저의 핸드폰 번호
-        //2. 미션에서 random 미션
-        //3. 작성한 힌트.
-        //4. team 창아오고
-        //5. userteam 찾아와야한다.
         User userById;
         try {
              userById = userRetriever.findUserById(from.userId());

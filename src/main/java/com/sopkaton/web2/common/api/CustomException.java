@@ -1,4 +1,4 @@
-package com.sopkaton.web2.common;
+package com.sopkaton.web2.common.api;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

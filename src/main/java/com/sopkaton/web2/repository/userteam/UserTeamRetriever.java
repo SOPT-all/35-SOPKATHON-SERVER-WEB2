@@ -1,6 +1,8 @@
-package com.sopkaton.web2.repository;
+package com.sopkaton.web2.repository.userteam;
 
-import com.sopkaton.web2.common.UserTeamNotFoundException;
+import com.sopkaton.web2.common.core.UserTeamNotFoundException;
+import com.sopkaton.web2.repository.team.Team;
+import com.sopkaton.web2.repository.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

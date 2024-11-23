@@ -1,6 +1,6 @@
-package com.sopkaton.web2.repository;
+package com.sopkaton.web2.repository.team;
 
-import com.sopkaton.web2.common.TeamNotFoundException;
+import com.sopkaton.web2.common.core.TeamNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,5 +1,9 @@
-package com.sopkaton.web2.repository;
+package com.sopkaton.web2.repository.card;
 
+import com.sopkaton.web2.repository.BaseTimeEntity;
+import com.sopkaton.web2.repository.mission.Mission;
+import com.sopkaton.web2.repository.team.Team;
+import com.sopkaton.web2.repository.userteam.UserTeam;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

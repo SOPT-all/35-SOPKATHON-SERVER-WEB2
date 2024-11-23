@@ -1,4 +1,4 @@
-package com.sopkaton.web2.repository;
+package com.sopkaton.web2.repository.card;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

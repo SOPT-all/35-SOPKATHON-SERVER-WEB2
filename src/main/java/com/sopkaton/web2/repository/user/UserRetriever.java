@@ -1,6 +1,6 @@
-package com.sopkaton.web2.repository;
+package com.sopkaton.web2.repository.user;
 
-import com.sopkaton.web2.common.MemberNotFoundException;
+import com.sopkaton.web2.common.core.MemberNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

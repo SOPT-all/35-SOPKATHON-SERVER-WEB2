@@ -1,6 +1,6 @@
 package com.sopkaton.web2.controller;
 
-import com.sopkaton.web2.common.SuccessCode;
+import com.sopkaton.web2.common.api.SuccessCode;
 import com.sopkaton.web2.controller.request.CardRequest;
 import com.sopkaton.web2.service.CardService;
 import com.sopkaton.web2.service.command.CardCreateCommand;

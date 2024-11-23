@@ -1,6 +1,6 @@
-package com.sopkaton.web2.repository;
+package com.sopkaton.web2.repository.mission;
 
-import com.sopkaton.web2.common.MissionNotFoundException;
+import com.sopkaton.web2.common.core.MissionNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
