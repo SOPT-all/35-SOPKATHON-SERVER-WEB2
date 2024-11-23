@@ -36,4 +36,8 @@ public class UserTeam extends BaseTimeEntity {
 
     @Column(name = "chance", nullable = false)
     private Boolean chance;
+
+    public void setChance(boolean b) {
+        this.chance = b;
+    }
 }
