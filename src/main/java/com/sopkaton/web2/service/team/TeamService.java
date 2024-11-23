@@ -3,12 +3,16 @@ package com.sopkaton.web2.service.team;
 import com.sopkaton.web2.common.api.CustomException;
 import com.sopkaton.web2.common.api.ErrorCode;
 import com.sopkaton.web2.common.api.SuccessCode;
+import com.sopkaton.web2.controller.request.TeamCreateRequest;
 import com.sopkaton.web2.repository.team.Team;
+import com.sopkaton.web2.repository.team.TeamRepository;
 import com.sopkaton.web2.repository.team.TeamRetriever;
 import com.sopkaton.web2.repository.user.User;
+import com.sopkaton.web2.repository.user.UserRepository;
 import com.sopkaton.web2.repository.user.UserRetriever;
 import com.sopkaton.web2.repository.userteam.UserTeam;
 import com.sopkaton.web2.repository.userteam.UserTeamRepository;
+import com.sopkaton.web2.service.response.TeamCreateResponse;
 import com.sopkaton.web2.service.response.TeamResponse;
 import com.sopkaton.web2.service.response.TeamsResponse;
 import java.util.List;
@@ -25,6 +29,8 @@ public class TeamService {
     private final TeamRetriever retriever;
     private final UserRetriever userRetriever;
     private final UserTeamRepository userTeamRepository;
+    private final TeamRepository teamRepository;
+    private final UserRepository userRepository;
 
     public TeamsResponse findTeamsByName(String name) {
         List<TeamResponse> list = retriever.findTeamsByName(name).stream().map(TeamResponse::of)
@@ -54,5 +60,28 @@ public class TeamService {
 
         userTeamRepository.save(userteam);
         return TeamResponse.of(team);
+    }
+    @Transactional
+    public TeamCreateResponse createTeam(long userId, TeamCreateRequest teamCreateRequest) {
+
+
+        //팀 생성 후 저장
+        Team team = new Team(teamCreateRequest.name(), teamCreateRequest.minimumStartNumber());
+        Team savedTeam = teamRepository.save(team);
+        TeamCreateResponse teamCreateResponse = new TeamCreateResponse(savedTeam.getId(), savedTeam.getName(), savedTeam.getCode());
+
+        //유저 찾기
+        User findUser = userRepository.findById(userId).orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
+
+        //userTeam 저장
+        UserTeam userTeam = new UserTeam(findUser, savedTeam);
+        UserTeam savedUserTeam = userTeamRepository.save(userTeam);
+
+        savedTeam.setCurrentNumber(1);
+
+
+        //return teamCreateResponse
+        return teamCreateResponse;
+
     }
 }

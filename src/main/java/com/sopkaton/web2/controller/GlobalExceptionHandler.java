@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ApiResponse<Void> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-        return ApiResponse.fail(ErrorCode.INVALID_PASSWORD);
+        return ApiResponse.fail(ErrorCode.BAD_REQUEST);
     }
     @ExceptionHandler(CustomException.class)
     public ApiResponse<Void> handleCustomException(CustomException e) {
