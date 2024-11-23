@@ -44,7 +44,7 @@ public class TeamController {
     }
 
 
-    @GetMapping("/{teamId}/register")
+    @PostMapping("/{teamId}/register")
     public ApiResponse<TeamResponse> registerTeam(@PathVariable long teamId, @RequestHeader("User-Id") long userId, @RequestBody RegisterRequest request) {
         return ApiResponse.success(SuccessCode.OK, teamService.registerTeam(teamId, userId, request.code()));
     }
