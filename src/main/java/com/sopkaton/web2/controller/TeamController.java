@@ -6,7 +6,6 @@ import com.sopkaton.web2.service.response.TeamResponse;
 import com.sopkaton.web2.service.response.TeamsResponse;
 import com.sopkaton.web2.service.team.TeamService;
 import com.sopkaton.web2.controller.request.TeamCreateRequest;
-import com.sopkaton.web2.service.TeamService;
 import com.sopkaton.web2.service.response.TeamCreateResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

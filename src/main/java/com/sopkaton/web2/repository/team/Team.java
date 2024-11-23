@@ -44,4 +44,8 @@ public class Team extends BaseTimeEntity {
     public void addCurrentNumber() {
         this.currentNumber++;
     }
+
+    public void setCurrentNumber(int currentNumber) {
+        this.currentNumber = currentNumber;
+    }
 }
