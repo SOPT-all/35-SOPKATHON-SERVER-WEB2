@@ -1,6 +1,8 @@
 package com.sopkaton.web2.controller;
 
 
+import com.sopkaton.web2.common.ErrorCode;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import com.sopkaton.web2.common.api.CustomException;
 import com.sopkaton.web2.common.api.ErrorCode;
 import org.springframework.http.HttpStatus;
@@ -11,9 +13,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(CustomException.class)
-    public ApiResponse<Void> handleCustomException(CustomException e) {
-        return ApiResponse.fail(e.getErrorCode());
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ApiResponse<Void> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        return ApiResponse.fail(ErrorCode.INVALID_PASSWORD);
     }
 
     @ExceptionHandler(Exception.class)
