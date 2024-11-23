@@ -26,4 +26,9 @@ public class User extends BaseTimeEntity {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    public User(String phoneNumber, String password) {
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+    }
 }
