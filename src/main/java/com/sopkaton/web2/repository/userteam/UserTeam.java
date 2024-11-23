@@ -12,6 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -39,5 +41,12 @@ public class UserTeam extends BaseTimeEntity {
 
     public void setChance(boolean b) {
         this.chance = b;
+    }
+
+    @Builder
+    public UserTeam(User user, Team team, Boolean chance) {
+        this.user = user;
+        this.team = team;
+        this.chance = chance;
     }
 }

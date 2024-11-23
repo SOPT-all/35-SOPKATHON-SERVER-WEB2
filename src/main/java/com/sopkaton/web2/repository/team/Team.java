@@ -29,4 +29,11 @@ public class Team extends BaseTimeEntity {
 
     @Column(name = "minimum_start_number", nullable = false)
     private int minimumStartNumber;
+
+    @Column(name = "current_number", nullable = false)
+    private int currentNumber;
+
+    public void addCurrentNumber() {
+        this.currentNumber++;
+    }
 }
