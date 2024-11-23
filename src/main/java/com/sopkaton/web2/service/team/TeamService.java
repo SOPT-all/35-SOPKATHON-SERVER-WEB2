@@ -4,6 +4,7 @@ import com.sopkaton.web2.common.api.CustomException;
 import com.sopkaton.web2.common.api.ErrorCode;
 import com.sopkaton.web2.common.api.SuccessCode;
 import com.sopkaton.web2.controller.request.TeamCreateRequest;
+import com.sopkaton.web2.controller.request.TeamDuplicateRequest;
 import com.sopkaton.web2.repository.team.Team;
 import com.sopkaton.web2.repository.team.TeamRepository;
 import com.sopkaton.web2.repository.team.TeamRetriever;
@@ -13,6 +14,7 @@ import com.sopkaton.web2.repository.user.UserRetriever;
 import com.sopkaton.web2.repository.userteam.UserTeam;
 import com.sopkaton.web2.repository.userteam.UserTeamRepository;
 import com.sopkaton.web2.service.response.TeamCreateResponse;
+import com.sopkaton.web2.service.response.TeamDuplicateResponse;
 import com.sopkaton.web2.service.response.TeamResponse;
 import com.sopkaton.web2.service.response.TeamsResponse;
 import java.util.List;
@@ -83,5 +85,12 @@ public class TeamService {
         //return teamCreateResponse
         return teamCreateResponse;
 
+    }
+
+    @Transactional
+    public TeamDuplicateResponse checkDuplicate(String name) {
+        boolean isDuplicate = teamRepository.existsByNameIgnoreCase(name);
+        TeamDuplicateResponse teamDuplicateResponse = new TeamDuplicateResponse(isDuplicate);
+        return teamDuplicateResponse;
     }
 }

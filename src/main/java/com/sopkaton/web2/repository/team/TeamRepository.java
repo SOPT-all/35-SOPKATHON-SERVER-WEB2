@@ -9,4 +9,5 @@ import org.springframework.data.repository.query.Param;
 
 public interface TeamRepository extends JpaRepository<Team, Long> {
     List<Team> findAllByNameIgnoreCaseContainingOrderByName(String name);
+    boolean existsByNameIgnoreCase(String name);
 }
