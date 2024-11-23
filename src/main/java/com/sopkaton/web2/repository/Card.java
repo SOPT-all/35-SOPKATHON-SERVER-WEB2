@@ -9,6 +9,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +18,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 @Table(name = "card")
+@Builder
+@AllArgsConstructor
 public class Card extends BaseTimeEntity {
 
     @Id
@@ -38,6 +42,6 @@ public class Card extends BaseTimeEntity {
     @Column(name = "hint", nullable = false)
     private String hint;
 
-    @Column(name = "checked_by", nullable = false)
+    @Column(name = "checked_by", nullable = true)
     private Long checkedBy;
 }
