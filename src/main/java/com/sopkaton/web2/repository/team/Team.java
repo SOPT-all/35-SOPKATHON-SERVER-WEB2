@@ -10,6 +10,8 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
@@ -29,6 +31,12 @@ public class Team extends BaseTimeEntity {
 
     @Column(name = "minimum_start_number", nullable = false)
     private int minimumStartNumber;
+
+    public Team(final String name, final int minimumStartNumber) {
+        this.name = name;
+        this.code = UUID.randomUUID().toString();
+        this.minimumStartNumber = minimumStartNumber;
+    }
 
     @Column(name = "current_number", nullable = false)
     private int currentNumber;
