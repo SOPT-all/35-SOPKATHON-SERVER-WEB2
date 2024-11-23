@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -44,7 +45,7 @@ public class TeamController {
 
 
     @GetMapping("/{teamId}/register")
-    public ApiResponse<TeamResponse> registerTeam(@RequestParam long teamId, @RequestHeader("User-Id") long userId, @RequestBody RegisterRequest request) {
+    public ApiResponse<TeamResponse> registerTeam(@PathVariable long teamId, @RequestHeader("User-Id") long userId, @RequestBody RegisterRequest request) {
         return ApiResponse.success(SuccessCode.OK, teamService.registerTeam(teamId, userId, request.code()));
     }
 
