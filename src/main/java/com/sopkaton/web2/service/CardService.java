@@ -14,7 +14,10 @@ import com.sopkaton.web2.repository.user.UserRetriever;
 import com.sopkaton.web2.repository.userteam.UserTeam;
 import com.sopkaton.web2.repository.userteam.UserTeamRetriever;
 import com.sopkaton.web2.service.command.CardCreateCommand;
+import com.sopkaton.web2.service.response.CardIndividualResponse;
 import com.sopkaton.web2.service.response.CardResponse;
+import com.sopkaton.web2.service.response.CardsResponse;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,5 +87,35 @@ public class CardService {
         String phoneNumber = card.getUserTeam().getUser().getPhoneNumber();
         userTeam.setChance(false);
         return new CardResponse(card.getHint(), phoneNumber,card.getMission().getContent());
+    }
+
+    @Transactional(readOnly = true)
+    public CardsResponse findCards(long teamId, long userId) {
+        //최소 참여인원을 넘었을 때 true를 반환한다.
+        //조회하는 user가 선택한 경우 카드의 전체 내용을 반한합니다.
+
+        Team team = teamRetriever.findTeamById(teamId);
+        boolean isAbleToChoose;//isAbletoChoose는 전체 기준 boolean
+        if (team.getCurrentNumber() < team.getMinimumStartNumber()) {
+            isAbleToChoose = false;
+        } else {
+            isAbleToChoose = true;
+        }
+
+        UserTeam userTeam = userTeamRetriever.findUserTeamByUserIdAndTeamId(userId, teamId);
+        //선택하지 않았다. -> 모두 히든을 보여줌
+        if (userTeam.getChance() == true) {
+            return new CardsResponse(isAbleToChoose, cardRepository.findAllByTeamId(teamId).stream()
+                    .map(CardIndividualResponse::createHidden)
+                    .toList(), null);
+        } else {//선택했다 mycard + mycard를 제외한 모든 카드ㄹ
+            UserTeam foundUserTeam = userTeamRetriever.findUserTeamByUserIdAndTeamId(userId, teamId);
+            Card myCard = cardRepository.findByCheckedByAndTeamId(foundUserTeam.getId(), teamId).orElseThrow(() -> new CustomException(ErrorCode.CARD_NOT_FOUND));
+            return new CardsResponse(isAbleToChoose, cardRepository.findAllByTeamId(teamId).stream()
+                            .filter(card1 -> card1.getId() != myCard.getId())
+                            .map(CardIndividualResponse::createHidden).collect(Collectors.toList()),
+                            CardIndividualResponse.createVisible(myCard, myCard.getMission(), myCard.getUserTeam().getUser()));
+        }
+
     }
 }

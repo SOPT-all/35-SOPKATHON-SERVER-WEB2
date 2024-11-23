@@ -6,6 +6,7 @@ import com.sopkaton.web2.repository.user.UserRepository;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -13,6 +14,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    @Transactional
     public Long createUser(UserPostRequest userPostRequest) {
         //전화번호 검증
         //비밀번호 검증

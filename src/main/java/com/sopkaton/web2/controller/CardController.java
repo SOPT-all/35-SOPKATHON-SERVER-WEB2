@@ -5,6 +5,7 @@ import com.sopkaton.web2.controller.request.CardRequest;
 import com.sopkaton.web2.service.CardService;
 import com.sopkaton.web2.service.command.CardCreateCommand;
 import com.sopkaton.web2.service.response.CardResponse;
+import com.sopkaton.web2.service.response.CardsResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,5 +40,11 @@ public class CardController {
         log.info(String.valueOf(teamId));
         log.info(String.valueOf(userId));
         return ApiResponse.success(SuccessCode.OK, cardService.findCard(cardId, teamId, userId));
+    }
+
+    @GetMapping
+    public ApiResponse<CardsResponse> findCard(@RequestParam("teamId")long teamId,
+                                               @RequestHeader("User-Id")long userId){
+        return ApiResponse.success(SuccessCode.OK, cardService.findCards(teamId, userId));
     }
 }
