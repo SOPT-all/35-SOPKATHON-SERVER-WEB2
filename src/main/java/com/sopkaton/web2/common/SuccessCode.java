@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 @Getter
 @RequiredArgsConstructor
 public enum SuccessCode {
-    OK(HttpStatus.OK);
+    OK(HttpStatus.OK), CREATED(HttpStatus.CREATED);
 
     private final HttpStatus httpStatus;
 }
