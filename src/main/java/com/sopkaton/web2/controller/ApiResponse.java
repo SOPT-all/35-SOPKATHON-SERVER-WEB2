@@ -2,11 +2,9 @@ package com.sopkaton.web2.controller;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.sopkaton.web2.common.ErrorCode;
-import com.sopkaton.web2.common.SuccessCode;
-import lombok.AllArgsConstructor;
+import com.sopkaton.web2.common.api.ErrorCode;
+import com.sopkaton.web2.common.api.SuccessCode;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 
 @Getter

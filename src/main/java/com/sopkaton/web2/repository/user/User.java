@@ -1,5 +1,6 @@
-package com.sopkaton.web2.repository;
+package com.sopkaton.web2.repository.user;
 
+import com.sopkaton.web2.repository.BaseTimeEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,14 +13,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
-@Table(name = "mission")
-public class Mission extends BaseTimeEntity {
+@Table(name = "users")
+public class User extends BaseTimeEntity {
 
     @Id
-    @Column(name = "mission_id")
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "content", nullable = false)
-    private String content;
+    @Column(name = "phone_number", nullable = false)
+    private String phoneNumber;
+
+    @Column(name = "password", nullable = false)
+    private String password;
 }

@@ -1,5 +1,8 @@
-package com.sopkaton.web2.repository;
+package com.sopkaton.web2.repository.userteam;
 
+import com.sopkaton.web2.repository.BaseTimeEntity;
+import com.sopkaton.web2.repository.team.Team;
+import com.sopkaton.web2.repository.user.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

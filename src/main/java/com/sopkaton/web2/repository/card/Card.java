@@ -1,5 +1,9 @@
-package com.sopkaton.web2.repository;
+package com.sopkaton.web2.repository.card;
 
+import com.sopkaton.web2.repository.BaseTimeEntity;
+import com.sopkaton.web2.repository.mission.Mission;
+import com.sopkaton.web2.repository.team.Team;
+import com.sopkaton.web2.repository.userteam.UserTeam;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +13,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +22,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 @Table(name = "card")
+@Builder
+@AllArgsConstructor
 public class Card extends BaseTimeEntity {
 
     @Id
@@ -38,6 +46,6 @@ public class Card extends BaseTimeEntity {
     @Column(name = "hint", nullable = false)
     private String hint;
 
-    @Column(name = "checked_by", nullable = false)
+    @Column(name = "checked_by", nullable = true)
     private Long checkedBy;
 }
