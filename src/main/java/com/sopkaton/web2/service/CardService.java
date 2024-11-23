@@ -14,8 +14,10 @@ import com.sopkaton.web2.repository.user.UserRetriever;
 import com.sopkaton.web2.repository.userteam.UserTeam;
 import com.sopkaton.web2.repository.userteam.UserTeamRetriever;
 import com.sopkaton.web2.service.command.CardCreateCommand;
+import com.sopkaton.web2.service.response.CardResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +28,7 @@ public class CardService {
     private final TeamRetriever teamRetriever;
     private final UserTeamRetriever userTeamRetriever;
 
+    @Transactional
     public void createCard(CardCreateCommand from) {
         User userById;
         try {
@@ -62,5 +65,24 @@ public class CardService {
                 .hint(from.hint())
                 .mission(randomMission)
                 .build());
+    }
+
+    @Transactional
+    public CardResponse findCard(long cardId, long teamId, long userId) {
+
+        //userteam에서 하나를 찾는다.
+        //찬스가 없는 경우 에러를 던진다.
+        //찬스가 잇다면 찬스를 차감하고 카드에 대한 응답을 내려준다,
+        //카드에 checkedby에 userteam의 pk를 넣어준다.
+        UserTeam userTeam = userTeamRetriever.findUserTeamByUserIdAndTeamId(userId, teamId);
+        if (userTeam.getChance() == false) {// 찬스가 없다면
+            throw new CustomException(ErrorCode.NO_CHANCE);
+        }
+
+        Card card = cardRepository.findById(cardId).orElseThrow(() -> new CustomException(ErrorCode.CARD_NOT_FOUND));
+        card.setCheckedBy(userTeam.getId());
+        String phoneNumber = card.getUserTeam().getUser().getPhoneNumber();
+        userTeam.setChance(false);
+        return new CardResponse(card.getHint(), phoneNumber,card.getMission().getContent());
     }
 }

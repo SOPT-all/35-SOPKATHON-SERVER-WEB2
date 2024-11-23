@@ -48,4 +48,8 @@ public class Card extends BaseTimeEntity {
 
     @Column(name = "checked_by", nullable = true)
     private Long checkedBy;
+
+    public void setCheckedBy(Long userId) {
+        this.checkedBy = userId;
+    }
 }
